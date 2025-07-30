@@ -31,16 +31,15 @@ export class WeatherService {
        if (cached) {
         return of(JSON.parse(cached));
       }
-    // let message = 'An unknown error occurred';
-    // if (error.error instanceof ErrorEvent) {
-    //   message = `Client error: ${error.error.message}`;
-    // } else if (error.status === 404) {
-    //   message = 'City not found';
-    // } else if (error.status >= 500) {
-    //   message = 'Server error, please try again later';
-    // } else {
-    //   message = `Error ${error.status}: ${error.statusText}`;
-    // }
+      if (error.error instanceof ErrorEvent) {
+        message = `Client error: ${error.error.message}`;
+      } else if (error.status === 404) {
+        message = 'City not found';
+      } else if (error.status >= 500) {
+        message = 'Server error, please try again later';
+      } else {
+        message = `Error ${error.status}: ${error.statusText}`;
+      }
     return throwError(() => new Error(message));
   }
 }
