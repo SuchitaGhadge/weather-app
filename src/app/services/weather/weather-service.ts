@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, retry, throwError } from 'rxjs';
 import { API_KEY, BASE_URL } from '../../../constants';
 
 @Injectable({
@@ -18,6 +18,23 @@ export class WeatherService {
           units: 'metric',
           appid: this.key
         }
-      })
+      }).pipe(
+          retry(1), //retry once again if failed
+          catchError(this.handleError)
+    );
     }
+
+    private handleError(error: HttpErrorResponse) {
+    let message = 'An unknown error occurred';
+    if (error.error instanceof ErrorEvent) {
+      message = `Client error: ${error.error.message}`;
+    } else if (error.status === 404) {
+      message = 'City not found';
+    } else if (error.status >= 500) {
+      message = 'Server error, please try again later';
+    } else {
+      message = `Error ${error.status}: ${error.statusText}`;
+    }
+    return throwError(() => new Error(message));
+  }
 }

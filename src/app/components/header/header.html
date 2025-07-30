@@ -26,5 +26,11 @@
 }
 
 @if(weather()){
-    <app-weather-card [weather]="weather()"></app-weather-card>
+    <section class="grid grid-cols-2 gap-6">
+        <app-weather-card [weather]="weather()"></app-weather-card>
+        <app-outfit-card [weather]="weather()"></app-outfit-card>
+    </section>
+    <section class="w-6/12 ">
+        
+    </section>
 }

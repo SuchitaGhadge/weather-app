@@ -4,9 +4,10 @@ import { debounceTime, filter, switchMap } from 'rxjs';
 import { API_KEY } from '../../../constants';
 import { WeatherService } from '../../services/weather/weather-service';
 import { WeatherCard } from '../weather-card/weather-card';
+import { OutfitCard } from '../outfit-card/outfit-card';
 @Component({
   selector: 'app-header',
-  imports: [ReactiveFormsModule, WeatherCard],
+  imports: [ReactiveFormsModule, WeatherCard, OutfitCard],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
