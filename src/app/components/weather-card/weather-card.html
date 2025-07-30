@@ -1,24 +1,29 @@
+<div class=" border border-stone-200 p-4 shadow shadow-stone-200 m-4 rounded">
+    <h2 class="text-xs text-stone-400 pt-2 pb-4 border-b-2 border-stone-200">CURRENT WEATHER </h2>
+    <div class="grid grid-cols-2 justify-center mt-4">
 
-    <div class=" border border-stone-200 p-4 shadow shadow-stone-200 m-4 rounded">
-        <h2 class="text-xs text-stone-400 pt-2 pb-4 border-b-2 border-stone-200">CURRENT WEATHER </h2>
-        <div class="grid grid-cols-2 justify-center mt-4">
-            <div class="m-auto">
-                 <div class="text-6xl">{{weather.main.temp}} °C</div>
-                <div class="text-xl px-1">RealFeel {{weather.main.feels_like}}°C</div>
+        <div class=" m-auto">
+            <div class="text-6xl">{{weather.main.temp}} °C</div>
+            <div class="text-xl px-1">RealFeel {{weather.main.feels_like}}°C</div>
+        </div>
+        <div>
+            <div class="flex justify-between mx-2 my-1 px-2 py-2 border-b-2 border-stone-200">
+                <span class="text-sm">Wind</span>
+                <span class="font-bold">{{weather?.wind?.speed}}</span>
             </div>
-            <div>
-                <div class="flex justify-between mx-2 my-1 px-2 py-2 border-b-2 border-stone-200">
-                    <span class="text-sm">Wind</span>
-                    <span class="font-bold">{{weather?.wind?.speed}}</span>
-                </div>
-                <div class="flex justify-between mx-2 my-1 px-2 py-2 border-b-2 border-stone-200">
-                    <span class="text-sm">Wind Gusts</span>
-                    <span class="font-bold">{{weather?.wind?.gust}}</span>
-                </div>
-                <div class="flex justify-between mx-2 my-1 px-2 py-2 ">
-                    <span class="text-sm">Humidity</span>
-                    <span class="font-bold">{{weather?.main?.humidity}}</span>
-                </div>
+            <div class="flex justify-between mx-2 my-1 px-2 py-2 border-b-2 border-stone-200">
+                <span class="text-sm">Wind Gusts</span>
+                <span class="font-bold">{{weather?.wind?.gust}}</span>
+            </div>
+            <div class="flex justify-between mx-2 my-1 px-2 py-2 border-b-2 border-stone-200">
+                <span class="text-sm">Humidity</span>
+                <span class="font-bold">{{weather?.main?.humidity}}</span>
+            </div>
+            <div class="flex justify-between mx-2 my-1 px-2 py-2">
+                <span class="text-sm">Condition</span>
+                <span>{{weather?.weather[0]?.description}}</span>
+                
             </div>
         </div>
     </div>
+</div>
