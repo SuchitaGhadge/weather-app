@@ -26,11 +26,22 @@
 }
 
 @if(weather()){
-    <section class="grid grid-cols-2 gap-6">
+   <section class="flex">
+     <section class="w-9/12">
         <app-weather-card [weather]="weather()"></app-weather-card>
         <app-outfit-card [weather]="weather()"></app-outfit-card>
     </section>
-    <section class="w-6/12 ">
-        
+    <section class="w-3/12 ">
+        <div class="border border-stone-200 p-4 shadow shadow-stone-200 m-4 rounded">
+            <h2 class="text-stone-400 p-2">{{'Search History' | uppercase}}</h2>
+                <ul class="mt-1">
+                    @for (item of searchHistory(); track $index) {
+                        <li class="leading-normal p-3 border-t-2 border-stone-200">
+                            {{item}}
+                        </li>
+                    }
+                </ul>
+        </div>
     </section>
+   </section>
 }
