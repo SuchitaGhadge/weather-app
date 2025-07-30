@@ -30,7 +30,7 @@ export class OutfitCard implements OnChanges {
     } else {
       suggestion = cond.includes('snow')
         ? 'Heavy jackets or coats, scarves, hats, gloves and warm, waterproof boots or shoe. Consider wearing a warm sweater or thermal wear'
-        : 'Layers clothing, such as a light sweater under heavy jacket or coat, with long pants or jeans and closed-toe shoe or boots.';
+        : 'Layers clothing, such as a light sweater under heavy jacket or coat, with long pants or jeans and closed-toe shoe or boots';
     }
 
     this.outfit.set(suggestion.split("."));
