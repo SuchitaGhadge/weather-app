@@ -32,7 +32,7 @@
         <app-outfit-card [weather]="weather()"></app-outfit-card>
     </section>
     <section class="w-full md:w-3/12 ">
-        <div class="border border-stone-200 p-4 shadow shadow-stone-200 m-4 rounded dark:bg-slate-800 dark">
+        <div class="border border-stone-200 p-4 shadow shadow-stone-200 m-4 rounded">
             <h2 class="text-stone-400 p-2">{{'Search History' | uppercase}}</h2>
                 <ul class="mt-1">
                     @for (item of searchHistory(); track $index) {
