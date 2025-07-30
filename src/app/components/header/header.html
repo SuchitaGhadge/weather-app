@@ -26,12 +26,12 @@
 }
 
 @if(weather()){
-   <section class="flex">
-     <section class="w-9/12">
+   <section class="flex flex-col md:flex-row">
+     <section class="w-full md:w-9/12">
         <app-weather-card [weather]="weather()"></app-weather-card>
         <app-outfit-card [weather]="weather()"></app-outfit-card>
     </section>
-    <section class="w-3/12 ">
+    <section class="w-full md:w-3/12 ">
         <div class="border border-stone-200 p-4 shadow shadow-stone-200 m-4 rounded">
             <h2 class="text-stone-400 p-2">{{'Search History' | uppercase}}</h2>
                 <ul class="mt-1">
