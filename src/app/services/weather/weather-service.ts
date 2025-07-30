@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, retry, throwError } from 'rxjs';
+import { catchError, Observable, of, retry, tap, throwError } from 'rxjs';
 import { API_KEY, BASE_URL } from '../../../constants';
 
 @Injectable({
@@ -19,22 +19,28 @@ export class WeatherService {
           appid: this.key
         }
       }).pipe(
+          tap(data => localStorage.setItem('lastWeather', JSON.stringify(data))), //stores last  search data for cache
           retry(1), //retry once again if failed
           catchError(this.handleError)
     );
     }
 
     private handleError(error: HttpErrorResponse) {
-    let message = 'An unknown error occurred';
-    if (error.error instanceof ErrorEvent) {
-      message = `Client error: ${error.error.message}`;
-    } else if (error.status === 404) {
-      message = 'City not found';
-    } else if (error.status >= 500) {
-      message = 'Server error, please try again later';
-    } else {
-      message = `Error ${error.status}: ${error.statusText}`;
-    }
+      const cached = localStorage.getItem('lastWeather');
+      let message = 'An unknown error occurred'
+       if (cached) {
+        return of(JSON.parse(cached));
+      }
+    // let message = 'An unknown error occurred';
+    // if (error.error instanceof ErrorEvent) {
+    //   message = `Client error: ${error.error.message}`;
+    // } else if (error.status === 404) {
+    //   message = 'City not found';
+    // } else if (error.status >= 500) {
+    //   message = 'Server error, please try again later';
+    // } else {
+    //   message = `Error ${error.status}: ${error.statusText}`;
+    // }
     return throwError(() => new Error(message));
   }
 }
