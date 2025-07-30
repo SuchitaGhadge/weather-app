@@ -1,0 +1,30 @@
+<div class="flex flex-col md:flex-row bg-stone-800 p-4 text-white">
+    <div class="flex w-full my-1 md:w-6/12 justify-center align-baseline text-center">
+        <h1 class="text-3xl text-bold px-2">Weather App</h1>
+        <span class="px-1">{{weather()?.name}}</span>
+        <span>{{weather()?.main.temp}}  °C</span>
+    </div>
+    <div class="w-full md:w-6/12 ">
+        <input type="text" class="bg-white w-full md:w-96 rounded outline-0 text-stone-400 px-4 py-1" placeholder="search"
+            [formControl]="searchControl">
+        @if (errorMessage()){
+        <p class="text-red-500 mb-4">{{ errorMessage() }}</p>
+        }
+    </div>
+</div>
+
+@if (cityList().length && !selected()) {
+<div class="absolute bg-white text-stone-700 md:top-12 md:right-1/4 rounded z-10 shadow">
+    <ul class="text-stone-700 w-96">
+        @for (city of cityList(); track $index) {
+        <li (click)="selectCity(city)" class="p-2 hover:bg-gray-200 cursor-pointer">
+            {{ city.name }}
+        </li>
+        }
+    </ul>
+</div>
+}
+
+@if(weather()){
+    <app-weather-card [weather]="weather()"></app-weather-card>
+}
