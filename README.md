@@ -20,6 +20,9 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
+## API Key Integration
+Add your api-key from `https://openweathermap.org/` inside constants.ts file to make the application working.
+
 
 ## Features
 
